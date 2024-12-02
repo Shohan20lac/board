@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import TaskBoard from './pages/TaskBoard';
 import './App.css';
+
+const theme = createTheme({
+  palette: {
+    mode: 'light'
+  }
+})
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/task-board" element={<TaskBoard />} />
+            {/* Add more routes as needed */}
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
+  )
 }
 
-export default App;
+export default App
